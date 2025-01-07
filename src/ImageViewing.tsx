@@ -72,8 +72,8 @@ function ImageViewing({
   const imageList = useRef<VirtualizedList<ImageSource>>(null);
   const [opacity, onRequestCloseEnhanced] = useRequestClose(onRequestClose);
   const [currentImageIndex, onScroll] = useImageIndexChange(imageIndex, SCREEN);
-  const [headerTransform, footerTransform, toggleBarsVisible] =
-    useAnimatedComponents();
+  // const [headerTransform, footerTransform, toggleBarsVisible] =
+  //   useAnimatedComponents();
 
   useEffect(() => {
     if (onImageIndexChange) {
@@ -85,7 +85,7 @@ function ImageViewing({
     (isScaled: boolean) => {
       // @ts-ignore
       imageList?.current?.setNativeProps({ scrollEnabled: !isScaled });
-      toggleBarsVisible(!isScaled);
+      // toggleBarsVisible(!isScaled);
     },
     [imageList]
   );
@@ -106,7 +106,7 @@ function ImageViewing({
     >
       <StatusBarManager presentationStyle={presentationStyle} />
       <View style={[styles.container, { opacity, backgroundColor }]}>
-        <Animated.View style={[styles.header, { transform: headerTransform }]}>
+        <View style={[styles.header]}>
           {typeof HeaderComponent !== "undefined" ? (
             React.createElement(HeaderComponent, {
               imageIndex: currentImageIndex,
@@ -114,7 +114,7 @@ function ImageViewing({
           ) : (
             <ImageDefaultHeader onRequestClose={onRequestCloseEnhanced} />
           )}
-        </Animated.View>
+        </View>
         <VirtualizedList
           ref={imageList}
           data={images}
@@ -156,13 +156,11 @@ function ImageViewing({
           }
         />
         {typeof FooterComponent !== "undefined" && (
-          <Animated.View
-            style={[styles.footer, { transform: footerTransform }]}
-          >
+          <View style={[styles.footer]}>
             {React.createElement(FooterComponent, {
               imageIndex: currentImageIndex,
             })}
-          </Animated.View>
+          </View>
         )}
       </View>
     </Modal>
