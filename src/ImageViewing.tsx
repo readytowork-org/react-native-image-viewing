@@ -42,6 +42,7 @@ type Props = {
   delayLongPress?: number;
   HeaderComponent?: ComponentType<{ imageIndex: number }>;
   FooterComponent?: ComponentType<{ imageIndex: number }>;
+  loaderColor?: string;
 };
 
 const DEFAULT_ANIMATION_TYPE = "fade";

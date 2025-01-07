@@ -14,9 +14,9 @@ const SCREEN = Dimensions.get("screen");
 const SCREEN_WIDTH = SCREEN.width;
 const SCREEN_HEIGHT = SCREEN.height;
 
-export const ImageLoading = () => (
+export const ImageLoading = ({ color = "#FFF" }) => (
   <View style={styles.loading}>
-    <ActivityIndicator size="small" color="#FFF" />
+    <ActivityIndicator size="small" color={color} />
   </View>
 );
 
