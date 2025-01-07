@@ -108,9 +108,7 @@ function ImageViewing({
       <View style={[styles.container, { opacity, backgroundColor }]}>
         <View style={[styles.header]}>
           {typeof HeaderComponent !== "undefined" ? (
-            React.createElement(HeaderComponent, {
-              imageIndex: currentImageIndex,
-            })
+            { HeaderComponent }
           ) : (
             <ImageDefaultHeader onRequestClose={onRequestCloseEnhanced} />
           )}
@@ -156,11 +154,7 @@ function ImageViewing({
           }
         />
         {typeof FooterComponent !== "undefined" && (
-          <View style={[styles.footer]}>
-            {React.createElement(FooterComponent, {
-              imageIndex: currentImageIndex,
-            })}
-          </View>
+          <View style={[styles.footer]}>{FooterComponent}</View>
         )}
       </View>
     </Modal>
