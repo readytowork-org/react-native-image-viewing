@@ -40,8 +40,8 @@ type Props = {
   swipeToCloseEnabled?: boolean;
   doubleTapToZoomEnabled?: boolean;
   delayLongPress?: number;
-  HeaderComponent?: ComponentType<{ imageIndex: number }>;
-  FooterComponent?: ComponentType<{ imageIndex: number }>;
+  HeaderComponent?: ComponentType;
+  FooterComponent?: ComponentType;
   loaderColor?: string;
 };
 
@@ -108,7 +108,7 @@ function ImageViewing({
       <View style={[styles.container, { opacity, backgroundColor }]}>
         <View style={[styles.header]}>
           {typeof HeaderComponent !== "undefined" ? (
-            { HeaderComponent }
+            <HeaderComponent />
           ) : (
             <ImageDefaultHeader onRequestClose={onRequestCloseEnhanced} />
           )}
@@ -154,7 +154,9 @@ function ImageViewing({
           }
         />
         {typeof FooterComponent !== "undefined" && (
-          <View style={[styles.footer]}>{FooterComponent}</View>
+          <View style={[styles.footer]}>
+            <FooterComponent />
+          </View>
         )}
       </View>
     </Modal>
