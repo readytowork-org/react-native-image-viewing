@@ -51,6 +51,7 @@ const DEFAULT_BG_COLOR = "#000";
 const DEFAULT_DELAY_LONG_PRESS = 800;
 const SCREEN = Dimensions.get("screen");
 const SCREEN_WIDTH = SCREEN.width;
+const SCREEN_HEIGHT = SCREEN.height;
 
 function ImageViewing({
   images,
@@ -129,7 +130,7 @@ function ImageViewing({
           getItem={(_, index) => images[index]}
           getItemCount={() => images.length}
           getItemLayout={(_, index) => ({
-            length: SCREEN_WIDTH,
+            length: isLandscape? SCREEN_HEIGHT: SCREEN_WIDTH,
             offset: SCREEN_WIDTH * index,
             index,
           })}
