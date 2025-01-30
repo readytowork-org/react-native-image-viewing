@@ -43,7 +43,6 @@ type Props = {
   HeaderComponent?: ComponentType;
   FooterComponent?: ComponentType;
   loaderColor?: string;
-  isLandscape?: boolean;
 };
 
 const DEFAULT_ANIMATION_TYPE = "fade";
@@ -70,7 +69,6 @@ function ImageViewing({
   HeaderComponent,
   FooterComponent,
   loaderColor,
-                        isLandscape
 }: Props) {
   const imageList = useRef<VirtualizedList<ImageSource>>(null);
   const [opacity, onRequestCloseEnhanced] = useRequestClose(onRequestClose);
@@ -104,7 +102,7 @@ function ImageViewing({
       presentationStyle={presentationStyle}
       animationType={animationType}
       onRequestClose={onRequestCloseEnhanced}
-      supportedOrientations={isLandscape?["landscape"]:["portrait"]}
+      supportedOrientations={["portrait"]}
       hardwareAccelerated
     >
       <StatusBarManager presentationStyle={presentationStyle} />
@@ -130,7 +128,7 @@ function ImageViewing({
           getItem={(_, index) => images[index]}
           getItemCount={() => images.length}
           getItemLayout={(_, index) => ({
-            length: isLandscape? SCREEN_HEIGHT: SCREEN_WIDTH,
+            length: SCREEN_WIDTH,
             offset: SCREEN_WIDTH * index,
             index,
           })}
